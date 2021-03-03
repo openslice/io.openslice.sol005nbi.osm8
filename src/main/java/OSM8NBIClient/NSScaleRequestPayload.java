@@ -20,7 +20,6 @@
 
 package OSM8NBIClient;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,20 +28,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author Ioannis Chatzis
  *
  */
-
 enum ScaleVnfType {SCALE_OUT, SCALE_IN};
 
 public class NSScaleRequestPayload 
-{		
-	public class ScaleVnfData
+{	
+	
+	private class ScaleVnfData
 	{
-		public class ScaleByStepData
+		private class ScaleByStepData
 		{
-			@JsonProperty("scaling-group-descriptor")
 			private String scaling_group_descriptor;
-			@JsonProperty("member-vnf-index")
 			private String member_vnf_index;
-			@JsonProperty("scaling-policy")
 			private String scaling_policy;
 
 			public String getScaling_group_descriptor() {
@@ -65,9 +61,9 @@ public class NSScaleRequestPayload
 			}			
 		}
 
-		private String scaleVnfType;
+		private ScaleVnfType scaleVnfType;
 		private String vnfInstanceId;		
-		private ScaleByStepData scaleByStepData = new ScaleByStepData();
+		private ScaleByStepData scaleByStepData;
 
 		public String getVnfInstanceId() {
 			return vnfInstanceId;
@@ -81,10 +77,10 @@ public class NSScaleRequestPayload
 		public void setVnfInstanceId(String vnfInstanceId) {
 			this.vnfInstanceId = vnfInstanceId;
 		}
-		public String getScaleVnfType() {
+		public ScaleVnfType getScaleVnfType() {
 			return scaleVnfType;
 		}
-		public void setScaleVnfType(String scaleVnfType) {
+		public void setScaleVnfType(ScaleVnfType scaleVnfType) {
 			this.scaleVnfType = scaleVnfType;
 		}
 		
@@ -93,9 +89,8 @@ public class NSScaleRequestPayload
     private String lcmOperationType; //"lcmOperationType": "scale"
     private String nsInstanceId;
 	private String scaleType;
-	@JsonProperty("timeout-ns-scale")	
 	private String timeout_ns_scale;
-	private ScaleVnfData scaleVnfData = new ScaleVnfData();
+	private ScaleVnfData scaleVnfData;
 	private String scaleTime;
     
 	public String getLcmOperationType() {
