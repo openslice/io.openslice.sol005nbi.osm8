@@ -464,7 +464,7 @@ public class VnfdBuilder implements Builder<Vnfd> {
         @JsonProperty("mgmt-interface")                         
         private final MgmtInterface _mgmtInterface;
         private final List<MonitoringParam> _monitoringParam;
-        @JsonProperty("name")                
+        @JsonProperty("id")                
         private final String _name;
         private final VnfOperationalStatus _operationalStatus;
         @JsonProperty("placement-groups")                        
