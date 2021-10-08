@@ -138,6 +138,7 @@ public class OSM8Client implements OSMClient{
 					.build();
 			requestFactory = new HttpComponentsClientHttpRequestFactory();
 			requestFactory.setHttpClient(httpClient);
+			requestFactory.setConnectTimeout(2000);
 
 		} catch (KeyManagementException e) {
 			// TODO Auto-generated catch block
@@ -899,6 +900,7 @@ public class OSM8Client implements OSMClient{
 			
         // use the TrustSelfSignedStrategy to allow Self Signed Certificates
         SSLContext sslContext;
+        int timeout=5;
 		try {
 			sslContext = SSLContextBuilder
 			        .create()
@@ -912,7 +914,7 @@ public class OSM8Client implements OSMClient{
 	        // and allow all hosts verifier.
 	        SSLConnectionSocketFactory connectionFactory = new SSLConnectionSocketFactory(sslContext, allowAllHosts);
         
-	        httpClient = HttpClients.custom().setSSLSocketFactory(connectionFactory).setDefaultRequestConfig(RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD).build()).build();
+	        httpClient = HttpClients.custom().setSSLSocketFactory(connectionFactory).setDefaultRequestConfig(RequestConfig.custom().setSocketTimeout(timeout*1000).setCookieSpec(CookieSpecs.STANDARD).build()).build();
 	        requestFactory = new HttpComponentsClientHttpRequestFactory();            
 	        
 	        // Get the token
